@@ -36,7 +36,9 @@ def preprocess_dataset(
             kwargs = dict(allowed_special="all")
         else:
             kwargs = dict(add_special_tokens=True)
-
+        if hasattr(tokenizer, "add_bos_token") and hasattr(tokenizer, "add_eos_token"):
+            setattr(tokenizer, "add_bos_token", True)  # for LLaMA tokenizer
+            setattr(tokenizer, "add_eos_token", True)
         tokenized_examples = tokenizer(examples["prompt"], **kwargs)
         concatenated_examples = {k: list(chain(*tokenized_examples[k])) for k in tokenized_examples.keys()}
         total_length = len(concatenated_examples[list(concatenated_examples.keys())[0]])
