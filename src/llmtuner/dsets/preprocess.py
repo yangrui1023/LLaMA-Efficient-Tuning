@@ -35,7 +35,7 @@ def preprocess_dataset(
         if isinstance(getattr(tokenizer, "tokenizer", None), tiktoken.Encoding): # for tiktoken tokenizer (Qwen)
             kwargs = dict(allowed_special="all")
         else:
-            kwargs = dict(add_special_tokens=False)
+            kwargs = dict(add_special_tokens=True)
 
         tokenized_examples = tokenizer(examples["prompt"], **kwargs)
         concatenated_examples = {k: list(chain(*tokenized_examples[k])) for k in tokenized_examples.keys()}
