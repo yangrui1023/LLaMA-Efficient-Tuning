@@ -33,7 +33,7 @@ if __name__ == "__main__":
     #invoke the torch launcher shell script.
     #Note: we will use the pytorch launcher to launch deepspeed for multi-nodes training.
     #Note: we will use the s5cmd to speed up the uploading model assets to S3.
-    os.system("chmod +x ./train.sh")
+    os.system("chmod +x ./scripts/ds-pt-biachuan-test.sh")
     os.system("chmod +x ./s5cmd")
-    os.system("/bin/bash -c ./train.sh")
+    os.system("/bin/bash -c ./scripts/ds-pt-biachuan-test.sh")
 
